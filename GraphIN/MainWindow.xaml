@@ -1,0 +1,25 @@
+﻿<Window x:Class="GraphIN.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:viewModels="clr-namespace:GraphIN"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600">
+
+
+    <Grid>
+        <lvc:CartesianChart Margin="0,0,245,167">
+            <lvc:CartesianChart.Series>
+                <lvc:LineSeries Values="{Binding Values}" />
+            </lvc:CartesianChart.Series>
+        </lvc:CartesianChart>
+        <DataGrid ItemsSource="{Binding Source=MyList}" AutoGenerateColumns="False" Margin="171,267,115,13" Panel.ZIndex="-3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="X" Binding="{Binding X}"/>
+                <DataGridTextColumn Header="Y" Binding="{Binding Y}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
