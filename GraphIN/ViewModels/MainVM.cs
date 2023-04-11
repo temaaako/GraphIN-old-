@@ -1,4 +1,5 @@
-﻿using LiveCharts;
+﻿using GraphIN.ViewModels;
+using LiveCharts;
 using LiveCharts.Configurations;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace GraphIN
 {
@@ -16,12 +18,12 @@ namespace GraphIN
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public ChartValues<MeasureModel> Values { get; set; }
-
+        private Stopwatch _stopwatch;
+        private bool _isRunning;
 
         public MainVM() {
             //used to generate random values
-            var random = new Random();
-            var time = 0d;
+            
 
             //lets instead plot elapsed milliseconds and value
             var mapper = Mappers.Xy<MeasureModel>()
@@ -29,23 +31,41 @@ namespace GraphIN
                 .Y(x => x.Value);
             
 
+
             //save the mapper globally         
             Charting.For<MeasureModel>(mapper);
 
             Values = new ChartValues<MeasureModel>();
-            var sw = new Stopwatch();
-            sw.Start();
+            _stopwatch = new Stopwatch();
+            _stopwatch.Start();
 
+            
+        }
+
+        public void SwitchDrawing()
+        {
+            var random = new Random();
+            var time = 0f;
+            if (_isRunning)
+            {
+                _isRunning = false;
+                _stopwatch.Stop();
+            }
+            else
+            {
+                _isRunning = true;
+                _stopwatch.Start();
+            }
             Task.Run(() =>
             {
-                while (true)
+                while (_isRunning)
                 {
                     Thread.Sleep(500);
 
                     //we add the lecture based on our StopWatch instance
                     Values.Add(new MeasureModel
                     {
-                        ElapsedMilliseconds = sw.ElapsedMilliseconds,
+                        ElapsedMilliseconds = _stopwatch.ElapsedMilliseconds,
                         Value = time += random.Next(0, 10)
                     });
                 }
@@ -53,9 +73,5 @@ namespace GraphIN
         }
 
     }
-    public class MeasureModel
-    {
-        public double ElapsedMilliseconds { get; set; }
-        public double Value { get; set; }
-    }
+    
 }

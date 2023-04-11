@@ -10,16 +10,12 @@
 
 
     <Grid>
-        <lvc:CartesianChart Margin="0,0,245,167">
+        <lvc:CartesianChart Margin="0,0,391,92">
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding Values}" />
             </lvc:CartesianChart.Series>
         </lvc:CartesianChart>
-        <DataGrid ItemsSource="{Binding Source=MyList}" AutoGenerateColumns="False" Margin="171,267,115,13" Panel.ZIndex="-3">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="X" Binding="{Binding X}"/>
-                <DataGridTextColumn Header="Y" Binding="{Binding Y}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="456,343,0,0" VerticalAlignment="Top" Click="Button_Click" Width="111"/>
+        <TextBox x:Name="Texty" HorizontalAlignment="Left" Margin="306,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253" Height="234"/>
     </Grid>
 </Window>

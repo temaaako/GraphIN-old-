@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GraphIN.ViewModels;
 
 namespace GraphIN
 {
@@ -25,15 +26,21 @@ namespace GraphIN
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainVM _mainVM;
         public MainWindow()
         {
             InitializeComponent();
 
-            
 
-            DataContext = new MainVM();
+            _mainVM = new MainVM();
+            DataContext = _mainVM;
+            //Texty.Text = ExcelToArrayConverter.ConvertColumnToArray("C:\\Users\\MI\\Desktop\\данные.xlsx", 6)[5];
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _mainVM.SwitchDrawing();
+        }
     }
 
     
