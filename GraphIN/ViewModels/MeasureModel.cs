@@ -8,7 +8,7 @@ namespace GraphIN.ViewModels
 {
     public class MeasureModel
     {
-        public double ElapsedMilliseconds { get; set; }
-        public double Value { get; set; }
+        public float Time { get; set; }
+        public float Value { get; set; }
     }
 }

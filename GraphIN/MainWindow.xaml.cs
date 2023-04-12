@@ -21,9 +21,7 @@ using GraphIN.ViewModels;
 
 namespace GraphIN
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         private MainVM _mainVM;
@@ -39,9 +37,32 @@ namespace GraphIN
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int potentialStep;
+            if (int.TryParse(Step.Text, out potentialStep) == false)
+            {
+                potentialStep = 1;
+            }
+
+            if (potentialStep < 1)
+            {
+                Step.Text = "1";
+                potentialStep = 1;
+            }
+
+            if (potentialStep > 10)
+            {
+                Step.Text = "10";
+                potentialStep = 10;
+            }
+
+            _mainVM.Step = potentialStep;
+
+
             _mainVM.SwitchDrawing();
+
         }
+
     }
 
-    
+
 }

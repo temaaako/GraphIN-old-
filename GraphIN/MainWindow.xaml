@@ -4,18 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-        xmlns:viewModels="clr-namespace:GraphIN"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
+        Title="MainWindow" Height="1028" Width="1500" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
 
-    <Grid>
-        <lvc:CartesianChart Margin="0,0,391,92">
+    <Grid Margin="0,0,0,-6">
+        <lvc:CartesianChart Margin="0,0,10,143" RenderTransformOrigin="0.5,0.5">
+            
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding Values}" />
             </lvc:CartesianChart.Series>
         </lvc:CartesianChart>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="456,343,0,0" VerticalAlignment="Top" Click="Button_Click" Width="111"/>
-        <TextBox x:Name="Texty" HorizontalAlignment="Left" Margin="306,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253" Height="234"/>
+        <Button Content="Switch" HorizontalAlignment="Center" Margin="0,919,0,79" Click="Button_Click" Width="110" Height="20"/>
+        <TextBox x:Name="Step" HorizontalAlignment="Left" Margin="543,921,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="543,895,0,0" TextWrapping="Wrap" Text="Step" VerticalAlignment="Top"/>
     </Grid>
 </Window>
